@@ -13,6 +13,8 @@ class UsersRepository
 
 
     /**
+     * Get data from json files.
+     *
      * @param $providerJsonPath
      * @return \App\Http\Controllers\APIs\Traits\response|array|object
      * @throws \Nahid\JsonQ\Exceptions\ConditionNotAllowedException

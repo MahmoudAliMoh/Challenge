@@ -4,6 +4,8 @@ namespace App\Http\Services;
 
 use App\Http\Repositories\UsersRepository;
 use App\Http\Transformers\UsersTransformer;
+use Nahid\JsonQ\Exceptions\ConditionNotAllowedException;
+use Nahid\JsonQ\Exceptions\NullValueException;
 
 class UsersService
 {
@@ -26,8 +28,16 @@ class UsersService
 
     public function mergeUsersData()
     {
-        $dataProviderX = $this->usersRepository->getDataFromJsonDataProviders($this->dataProviderX);
-        $dataProviderY = $this->usersRepository->getDataFromJsonDataProviders($this->dataProviderY);
-        $this->usersTransformer->mergeProviders(['dataProviderX' => $dataProviderX, 'dataProviderY' => $dataProviderY]);
+        try {
+            $dataProviderX = $this->usersRepository->getDataFromJsonDataProviders($this->dataProviderX);
+            $dataProviderY = $this->usersRepository->getDataFromJsonDataProviders($this->dataProviderY);
+            return $this->usersTransformer->mergeProviders(['dataProviderX' => $dataProviderX, 'dataProviderY' => $dataProviderY]);
+        } catch (ConditionNotAllowedException $exception) {
+            report($exception);
+            return false;
+        } catch (NullValueException $exception) {
+            report($exception);
+            return false;
+        }
     }
 }

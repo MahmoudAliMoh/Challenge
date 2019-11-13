@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc4bb6ad-7893-4937-a1c2-26cb93743af9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/assessment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assessment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmPasswordController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/APIs/Traits/APIsCommonMethods.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/APIs/Traits/APIsCommonMethods.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/APIs/UsersAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/APIs/UsersAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Repositories/UsersRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Repositories/UsersRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Services/UsersService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Services/UsersService.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +163,7 @@
       <option name="presentableId" value="Default" />
       <updated>1573602732725</updated>
       <workItem from="1573602734251" duration="833000" />
-      <workItem from="1573661590114" duration="9123000" />
+      <workItem from="1573661590114" duration="10770000" />
     </task>
     <servers />
   </component>
