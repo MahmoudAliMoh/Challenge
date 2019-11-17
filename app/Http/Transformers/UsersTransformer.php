@@ -34,6 +34,7 @@ class UsersTransformer
                 'statusCode' => $this->checkAndUpdateStatusCode($provider['status']),
                 'registrationDate' => $provider['created_at'],
                 'parentIdentification' => $provider['id'],
+                'type' => 'DataProviderY'
             ];
         }
         return $providerData;
