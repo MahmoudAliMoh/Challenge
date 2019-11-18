@@ -38,4 +38,13 @@ interface UsersRepositoryContract
      * @return array
      */
     public function filterUsersByCurrency(array $users, array $filterInputs): array;
+
+    /**
+     * Filter users by amount.
+     *
+     * @param array $users
+     * @param array $filterInputs
+     * @return array
+     */
+    public function filterUsersByAmount(array $users, array $filterInputs): array;
 }

@@ -95,9 +95,31 @@ class UsersService implements UsersServiceContract
      */
     public function filterUsers(array $users, array $filterInputs): array
     {
-        $filteredByProvider = $this->usersRepository->filterUsersByProvider($users, $filterInputs);
-        $filteredByStatusCode = $this->usersRepository->filterUsersByStatusCode($users, $filterInputs);
-        $filteredByCurrency = $this->usersRepository->filterUsersByCurrency($users, $filterInputs);
-        dd($filteredByCurrency);
+        try {
+            $usersList = $users;
+            if (array_key_exists('provider', $filterInputs)) {
+                $filteredByProvider = $this->usersRepository->filterUsersByProvider($usersList, $filterInputs);
+                $usersList = $filteredByProvider;
+            }
+
+            if (array_key_exists('statusCode', $filterInputs)) {
+                $filteredByStatusCode = $this->usersRepository->filterUsersByStatusCode($usersList, $filterInputs);
+                $usersList = $filteredByStatusCode;
+            }
+
+            if (array_key_exists('currency', $filterInputs)) {
+                $filteredByCurrency = $this->usersRepository->filterUsersByCurrency($usersList, $filterInputs);
+                $usersList = $filteredByCurrency;
+            }
+
+            if (array_key_exists('balanceMin', $filterInputs) || array_key_exists('balanceMax', $filterInputs)) {
+                $filteredByAmount = $this->usersRepository->filterUsersByAmount($usersList, $filterInputs);
+                $usersList = $filteredByAmount;
+            }
+
+            return $usersList;
+        } catch (Exception $exception) {
+            return ['message' => 'Failed to filter providers!', 'exception' => $exception];
+        }
     }
 }

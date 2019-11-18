@@ -6,7 +6,13 @@ use App\Http\Contracts\UsersContracts\UsersFilterRequestContract;
 
 class UsersRequest implements UsersFilterRequestContract
 {
-    private $filterInputs = ['provider', 'statusCode', 'currency'];
+    private $filterInputs = [
+        'provider',
+        'statusCode',
+        'currency',
+        'balanceMin',
+        'balanceMax'
+    ];
 
     /**
      * Validate request.
