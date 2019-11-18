@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="cc4bb6ad-7893-4937-a1c2-26cb93743af9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Transformers/UsersTransformer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Transformers/UsersTransformer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/APIs/UsersAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/APIs/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Repositories/UsersRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Repositories/UsersRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Services/UsersService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Services/UsersService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Transformers/UsersTransformer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Transformers/ProviderYTransformer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,14 +123,18 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/app/Http/Requests" />
+      <recent name="$PROJECT_DIR$/app/Http/Contracts/UsersContracts" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app/Http/Transformers" />
+      <recent name="$PROJECT_DIR$/app/Http/Contracts/UserContracts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Controllers/APIs" />
@@ -162,6 +172,8 @@
       <workItem from="1573602734251" duration="833000" />
       <workItem from="1573661590114" duration="11635000" />
       <workItem from="1573724041455" duration="27000" />
+      <workItem from="1574033686741" duration="6078000" />
+      <workItem from="1574113976225" duration="5255000" />
     </task>
     <servers />
   </component>

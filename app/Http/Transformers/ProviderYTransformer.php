@@ -2,7 +2,9 @@
 
 namespace App\Http\Transformers;
 
-class UsersTransformer
+use App\Http\Contracts\UsersContracts\ProviderYTransformerContract;
+
+class ProviderYTransformer implements ProviderYTransformerContract
 {
     /**
      * Merge providers in one array to filter.
@@ -23,18 +25,18 @@ class UsersTransformer
      * @param $data
      * @return array
      */
-    public function transformProviderY($data)
+    public function transformProviderY(array $data): array
     {
         $providerData = [];
         foreach ($data as $provider) {
             $providerData[] = [
                 'parentAmount' => $provider['balance'],
-                'Currency' => $provider['currency'],
+                'currency' => $provider['currency'],
                 'parentEmail' => $provider['email'],
                 'statusCode' => $this->checkAndUpdateStatusCode($provider['status']),
                 'registrationDate' => $provider['created_at'],
                 'parentIdentification' => $provider['id'],
-                'type' => 'DataProviderY'
+                'provider' => 'DataProviderY'
             ];
         }
         return $providerData;
@@ -46,11 +48,12 @@ class UsersTransformer
      * @param $status
      * @return int
      */
-    private function checkAndUpdateStatusCode($status)
+    private function checkAndUpdateStatusCode(int $status): int
     {
         if ($status == 100) {
             return 1;
-        } elseif ($status == 200) {
+        } elseif
+        ($status == 200) {
             return 2;
         } elseif ($status == 300) {
             return 3;

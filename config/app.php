@@ -163,6 +163,12 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * User Service Providers...
+         */
+        \App\Http\Providers\UsersServiceProvider::class,
+
+
+        /*
          * Package Service Providers...
          */
 

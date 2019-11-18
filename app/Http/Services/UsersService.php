@@ -2,42 +2,102 @@
 
 namespace App\Http\Services;
 
-use App\Http\Repositories\UsersRepository;
-use App\Http\Transformers\UsersTransformer;
+use App\Http\Contracts\UsersContracts\ProviderXTransformerContract;
+use App\Http\Contracts\UsersContracts\ProviderYTransformerContract;
+use App\Http\Contracts\UsersContracts\UsersFilterRequestContract;
+use App\Http\Contracts\UsersContracts\UsersRepositoryContract;
+use App\Http\Contracts\UsersContracts\UsersServiceContract;
+use Mockery\Exception;
 use Nahid\JsonQ\Exceptions\ConditionNotAllowedException;
 use Nahid\JsonQ\Exceptions\NullValueException;
 
-class UsersService
+class UsersService implements UsersServiceContract
 {
     protected $usersRepository;
-    protected $usersTransformer;
+    protected $providerYTransformer;
+    protected $providerXTransformer;
+    protected $usersRequest;
 
     private $dataProviderX = 'json/DataProviderX.json';
     private $dataProviderY = 'json/DataProviderY.json';
 
+
     /**
      * UsersService constructor.
-     * @param UsersRepository $usersRepository
-     * @param UsersTransformer $usersTransformer
+     * @param UsersRepositoryContract $usersRepository
+     * @param ProviderYTransformerContract $providerYTransformer
+     * @param ProviderXTransformerContract $providerXTransformer
+     * @param UsersFilterRequestContract $usersRequest
      */
-    public function __construct(UsersRepository $usersRepository, UsersTransformer $usersTransformer)
+    public function __construct(
+        UsersRepositoryContract $usersRepository,
+        ProviderYTransformerContract $providerYTransformer,
+        ProviderXTransformerContract $providerXTransformer,
+        UsersFilterRequestContract $usersRequest
+    )
     {
         $this->usersRepository = $usersRepository;
-        $this->usersTransformer = $usersTransformer;
+        $this->providerYTransformer = $providerYTransformer;
+        $this->providerXTransformer = $providerXTransformer;
+        $this->usersRequest = $usersRequest;
     }
 
-    public function mergeUsersData()
+    /**
+     * Get data from provider y path.
+     *
+     * @param string $path
+     * @return array
+     */
+    public function getProviderData(string $path): array
     {
         try {
-            $dataProviderX = $this->usersRepository->getDataFromJsonDataProviders($this->dataProviderX);
-            $dataProviderY = $this->usersRepository->getDataFromJsonDataProviders($this->dataProviderY);
-            return $this->usersTransformer->mergeProviders(['dataProviderX' => $dataProviderX, 'dataProviderY' => $dataProviderY]);
+            return $this->usersRepository->getDataFromJsonDataProviders($path);
         } catch (ConditionNotAllowedException $exception) {
             report($exception);
-            return false;
+            return ['message' => 'Condition not allowed!', 'exception' => $exception];
         } catch (NullValueException $exception) {
             report($exception);
-            return false;
+            return ['message' => 'Null value returned!', 'exception' => $exception];
         }
+    }
+
+    /**
+     * Merge providers array.
+     *
+     * @param $filerInputs
+     * @return array
+     */
+    public function mergeProviders($filerInputs): array
+    {
+        try {
+            if ($this->usersRequest->validate($filerInputs) == true) {
+                $providerX = $this->getProviderData($this->dataProviderX);
+                $providerXTransformed = $this->providerXTransformer->transformProviderX($providerX);
+                $providerY = $this->getProviderData($this->dataProviderY);
+                $providerYTransformed = $this->providerYTransformer->transformProviderY($providerY);
+
+                $mergedProviders = array_merge($providerXTransformed, $providerYTransformed);
+                return $this->filterUsers($mergedProviders, $filerInputs);
+            } else {
+                return ['status' => 'Error', 'message' => 'Invalid filter inputs'];
+            }
+        } catch (Exception $exception) {
+            return ['message' => 'Failed to merge providers!', 'exception' => $exception];
+        }
+    }
+
+    /**
+     * Filter users array.
+     *
+     * @param array $filterInputs
+     * @param array $users
+     * @return array
+     */
+    public function filterUsers(array $users, array $filterInputs): array
+    {
+        $filteredByProvider = $this->usersRepository->filterUsersByProvider($users, $filterInputs);
+        $filteredByStatusCode = $this->usersRepository->filterUsersByStatusCode($users, $filterInputs);
+        $filteredByCurrency = $this->usersRepository->filterUsersByCurrency($users, $filterInputs);
+        dd($filteredByCurrency);
     }
 }
