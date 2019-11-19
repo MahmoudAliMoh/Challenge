@@ -112,16 +112,12 @@ class UsersRepository implements UsersRepositoryContract
      */
     public function filterUsersByAmount(array $users, array $filterInputs): array
     {
-        if (!empty($filterInputs['balanceMin']) && !empty($filterInputs['balanceMax'])) {
-            $filteredUsers = [];
-            foreach ($users as $user) {
-                if ($user['parentAmount'] >= $filterInputs['balanceMin'] && $user['parentAmount'] <= $filterInputs['balanceMax']) {
-                    array_push($filteredUsers, $user);
-                }
+        $filteredUsers = [];
+        foreach ($users as $user) {
+            if ($user['parentAmount'] >= $filterInputs['balanceMin'] && $user['parentAmount'] <= $filterInputs['balanceMax']) {
+                array_push($filteredUsers, $user);
             }
-            return $filteredUsers;
-        } else {
-            return ['status' => 'Error', 'message' => 'Invalid balance range inputs!'];
         }
+        return $filteredUsers;
     }
 }
